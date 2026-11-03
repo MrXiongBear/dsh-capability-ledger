@@ -1,0 +1,39 @@
+{
+  "name": "dsh-capability-ledger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Capability ledger for a DSH profile: real skill/tool usage folded from durable session logs, fixed per-request tool-schema cost, and a read-only safety audit of every installed bundle.",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "audit": "node scripts/audit-cli.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
